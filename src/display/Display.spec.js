@@ -26,3 +26,9 @@ test('it displays unlocked if locked prop is false', () => {
     const {getByText} = render(<Display locked={false}/>);
     getByText(/unlocked/i);
 });
+
+test('it uses red-led className when closed or locked', () => {
+    const {getByText} = render(<Display locked={true} closed={true}/>);
+    expect(getByText(/closed/i).className).toBe('led red-led');
+    expect(getByText(/^locked/i).className).toBe('led red-led');
+});
