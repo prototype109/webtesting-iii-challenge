@@ -45,5 +45,5 @@ test('it checks if gate can be cannot be opened or closed when locked', () => {
 
     expect(queryByText(/close gate/i)).toBe(null);
 
-    expect(getByText(/open gate/i)).not.toBeDisabled();
+    expect(getByText(/open gate/i)).toBeDisabled();
 });
