@@ -1,20 +1,32 @@
 import React from 'react';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 import Dashboard from './Dashboard';
 
 test('it renders', () => {
     render(<Dashboard />);
 });
 
-// test('it has a default state where gate unlocked and open', () => {
-//     const {getByText} = render(<Dashboard />);
-//     getByText(/help/i);
-//     getByText(/open/i);
-// });
+test('it checks the state of the door when "close gate" button clicked', () => {
 
-// test('it cannot be opened when locked', () => {
-//     const {getByText} = render(<Dashboard />);
-//     fireEvent.click(getByText(/close gate/i));
-//     fireEvent.click(getByText(/lock gate/i));
-//     fireEvent.click(getByText(/open gate/i));
-// });
+    const {getByText} = render(<Dashboard />);
+
+    getByText(/close gate/i);
+
+    fireEvent.click(getByText(/close gate/i));
+
+    getByText(/open gate/i);
+});
+
+test('it checks the state of the door when "lock gate" button clicked', () => {
+
+        const {getByText} = render(<Dashboard />);
+        getByText(/close gate/i);
+    
+        fireEvent.click(getByText(/close gate/i));
+    
+        getByText(/lock gate/i);
+
+        fireEvent.click(getByText(/lock gate/i));
+
+        getByText(/unlock gate/i);
+});

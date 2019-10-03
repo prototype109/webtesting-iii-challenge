@@ -1,6 +1,6 @@
 // Test away!
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import Display from './Display';
 
 test('it renders', () => {
@@ -31,4 +31,10 @@ test('it uses red-led className when closed or locked', () => {
     const {getByText} = render(<Display locked={true} closed={true}/>);
     expect(getByText(/closed/i).className).toBe('led red-led');
     expect(getByText(/^locked/i).className).toBe('led red-led');
+});
+
+test('it uses green-led className when open or unlocked', () => {
+    const {getByText} = render(<Display locked={false} closed={false}/>);
+    expect(getByText(/open/i).className).toBe('led green-led');
+    expect(getByText(/unlocked/i).className).toBe('led green-led');
 });
